@@ -88,4 +88,22 @@ public class Tree
             System.out.println(temp.data+"-->");
         }
     }
+
+    public boolean searching(int num)
+	{
+		Node temp=start;
+		if(num==temp.data)
+		{
+			return true;
+		}
+		else if(num<temp.data)
+		{
+			temp=temp.left;
+		}
+		else
+		{
+			temp=temp.right;
+		}
+		return false;
+	}
 }
