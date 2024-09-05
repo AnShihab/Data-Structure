@@ -19,7 +19,23 @@ public class Main {
         t.print_postorder(t.start);
         System.out.println("Preorder ");
         t.print_preorder(t.start);
-        
+        System.out.println();
+		
+		boolean found=false;
+		while(!found)
+		{
+			Scanner in=new Scanner(System.in);
+			int value=in.nextInt();
+			if(t.searching(value))
+			{
+				System.out.println("The vlaue is found");
+				found=true;
+			}
+			else
+			{
+				System.out.println("The vlaue is not found");
+			}
+		}      
     }
 
 }
