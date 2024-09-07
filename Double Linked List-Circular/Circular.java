@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class DLL {
+public class Circular {
     Node start = null;
     Scanner sc = new Scanner(System.in);
 
