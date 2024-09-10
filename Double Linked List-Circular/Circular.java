@@ -1,59 +1,83 @@
-import java.util.Scanner;
+package Main;
 
+import java.util.*;
 public class Circular {
     Node start = null;
     Scanner sc = new Scanner(System.in);
 
-    public Node getNode() {
+    public Node getNode() 
+    {
         System.out.println("Enter data: ");
-        int data = sc.nextInt();
-        return new Node(data);
+        Node newNode=new Node();
+        newNode.data=sc.nextInt();
+        newNode.prev=null;
+        newNode.next=null;
+        return newNode;
+        
     }
 
-    public void Insert_at_end() {
+    public void Add_Last() 
+    {
         Node newNode = getNode();
-        if (start == null) {
+        if (start == null) 
+        {
             start = newNode;
             start.next = start;
             start.prev = start;
-        } else {
-            Node last = start.prev; // Get the last node
-            last.next = newNode;
-            newNode.prev = last;
+        } 
+        else 
+        {
+			Node temp=start;
+			while(temp.next!=start) 
+			{
+				temp=temp.next;
+			}
+			temp.next = newNode;
+			newNode.prev = temp;
+			newNode.next = start;
+			start.prev = newNode;
+		}
+    }
+
+    public void Add_First() 
+    {
+        Node newNode = getNode();
+        if (start == null) 
+        {
+            start = newNode;
+            start.next = start;
+            start.prev = start;
+        } 
+        else 
+        {
+            Node last = start.prev;
             newNode.next = start;
+            newNode.prev = last;
             start.prev = newNode;
+            last.next = newNode;
+            start = newNode;
         }
     }
 
-    public void Insert_at_start() {
+    public void Add_Middle() 
+    {
         Node newNode = getNode();
-        if (start == null) {
+        if (start == null) 
+        {
             start = newNode;
             start.next = start;
             start.prev = start;
-        } else {
-            Node last = start.prev; // Get the last node
-            newNode.next = start;
-            newNode.prev = last;
-            start.prev = newNode;
-            last.next = newNode;
-            start = newNode;
-        }
-    }
-
-    public void Insert_Middle() {
-        Node newNode = getNode();
-        if (start == null) {
-            start = newNode;
-            start.next = start;
-            start.prev = start;
-        } else {
+        } 
+        else 
+        {
             System.out.print("Enter the position: ");
             int position = sc.nextInt();
-            if (position > 1 && position < nodeCounter()) {
+            if (position > 1 && position < nodeCounter()) 
+            {
                 Node temp = start;
                 int ctr = 1;
-                while (ctr < position - 1) {
+                while (ctr < position - 1) 
+                {
                     temp = temp.next;
                     ctr++;
                 }
@@ -61,18 +85,26 @@ public class Circular {
                 newNode.prev = temp;
                 temp.next.prev = newNode;
                 temp.next = newNode;
-            } else {
+            } 
+            else 
+            {
                 System.out.println("Invalid Position");
             }
         }
     }
 
-    public void Delete_First() {
-        if (start == null) {
+    public void Delete_First() 
+    {
+        if (start == null) 
+        {
             System.out.println("Empty List");
-        } else if (start.next == start) { // Only one node in the list
+        } 
+        else if (start.next == start) 
+        { 
             start = null;
-        } else {
+        } 
+        else 
+        {
             Node last = start.prev;
             start = start.next;
             start.prev = last;
@@ -80,66 +112,91 @@ public class Circular {
         }
     }
 
-    public void Delete_last() {
-        if (start == null) {
+    public void Delete_last() 
+    {
+        if (start == null) 
+        {
             System.out.println("Empty List");
-        } else if (start.next == start) { // Only one node in the list
-            start = null;
-        } else {
-            Node last = start.prev;
-            last.prev.next = start;
-            start.prev = last.prev;
-        }
+        } 
+        else 
+        {
+			Node temp=start;
+			while(temp.next!=start) 
+			{
+				temp=temp.next;
+			}
+			temp = temp.prev;
+			temp.next = start;
+			start.prev = temp;
+		}
     }
 
-    public void deleteMiddle() {
-        if (start == null) {
+    public void Delete_Middle() 
+    {
+        if (start == null) 
+        {
             System.out.println("Empty list, No Node to delete");
-        } else {
+        } 
+        else 
+        {
             System.out.print("Enter the position: ");
             int position = sc.nextInt();
-            if (position > 1 && position < nodeCounter()) {
+            if (position > 1 && position < nodeCounter()) 
+            {
                 Node temp = start;
                 int ctr = 1;
-                while (ctr < position - 1) {
+                while (ctr < position - 1) 
+                {
                     temp = temp.next;
                     ctr++;
                 }
-                Node toDelete = temp.next;
-                temp.next = toDelete.next;
-                toDelete.next.prev = temp;
-            } else {
+                Node Delete = temp.next;
+                temp.next = Delete.next;
+                Delete.next.prev = temp;
+            } 
+            else 
+            {
                 System.out.println("Invalid Position");
             }
         }
     }
 
-    public int nodeCounter() {
-        if (start == null) return 0;
-        Node temp = start;
-        int counter = 1;
-        while (temp.next != start) {
-            temp = temp.next;
-            counter++;
+    public int nodeCounter() 
+    {
+        if (start == null) 
+        {
+        	return 0;
         }
-        return counter;
+        else
+        {
+        	Node temp = start;
+            int counter = 1;
+            while (temp.next != start) 
+            {
+                temp = temp.next;
+                counter++;
+            }
+            return counter;
+        }
+        
     }
 
-    public void printlist() {
-        System.out.println();
-        if (start == null) {
-            System.out.println("\nCan't print list (Empty list)");
-        } else {
-            Node temp = start;
-            do {
-                if (temp.next != start) {
-                    System.out.print(temp.data + " <--> ");
-                } else {
-                    System.out.print(temp.data);
-                }
-                temp = temp.next;
-            } while (temp != start);
-        }
-        System.out.println();
+    public void printlist() 
+    {
+    	if (start==null) 
+		{
+			System.out.print("The List empty !!!");
+		} 
+    	else 
+		{
+			System.out.print(start.data+" ");
+			Node temp=start.next;
+			while(temp!=start) 
+			{
+				System.out.print(temp.data+" ");
+				temp=temp.next;
+			}
+		}
+		System.out.println();
     }
 }
