@@ -91,18 +91,22 @@ public class Tree
 
     public boolean searching(int num)
 	{
+	
 		Node temp=start;
-		if(num==temp.data)
+		while(temp!=null)
 		{
-			return true;
-		}
-		else if(num<temp.data)
-		{
-			temp=temp.left;
-		}
-		else
-		{
-			temp=temp.right;
+			if(num==temp.data)
+			{
+				return true;
+			}
+			else if(num<temp.data)
+			{
+				temp=temp.left;
+			}
+			else
+			{
+				temp=temp.right;
+			}
 		}
 		return false;
 	}
