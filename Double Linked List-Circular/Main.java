@@ -1,18 +1,19 @@
+package Main;
 public class Main
 {
     public static void main(String[] args) 
     {
         Circular c=new Circular();
-        c.Insert_at_end();
-        c.Insert_at_end();
-        c.Insert_at_end();
-        c.Insert_at_end(); 
+        c.Add_Last();
+        c.Add_Last();
+        c.Add_Last();
+        c.Add_Last();
         c.printlist();
         System.out.println();  
-        c.Insert_at_start();
+        c.Add_First();
         c.printlist();
         System.out.println();
-        c.Insert_Middle();
+        c.Add_Middle();
         c.printlist();
         System.out.println();
         System.out.println();
@@ -25,7 +26,7 @@ public class Main
         c.printlist();
         System.out.println();
 
-        c.deleteMiddle();
+        c.Delete_Middle();
         c.printlist();
         System.out.println();
     }
