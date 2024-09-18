@@ -2,23 +2,23 @@ import java.util.*;
 
 public class Main {
 
-    public static boolean randomSearch(int no, int[] ids, int size) 
+    public static boolean randomSearch(int num, int[] ids, int size) 
     {
         if (size == 0) 
         {
-            ids[0] = no;
+            ids[0] = num;
             return true;
         } 
         else 
         {
             for (int i = 0; i < size; i++) 
             {
-                if (ids[i] == no) 
+                if (ids[i] == num) 
                 {
-                    return false;  // Duplicate found
+                    return false;  
                 }
             }
-            ids[size] = no;
+            ids[size] = num;
         }
         return true;
     }
@@ -44,21 +44,22 @@ public class Main {
         
 
         do {
+            System.out.println();
             System.out.println("1. Enter a new student record.");
             System.out.println("2. Search for a student record.");
-            System.out.println("3. Display all students.");
+            System.out.println("3. Display available roll numbers");
             System.out.println("4. Exit");
             opt = in.nextInt();
 
             if (opt == 1) 
             {
                 boolean ans = false;
-                while (!ans) 
+                while (ans!=true) 
                 {
                     Random random = new Random();
-                    int randomNumber = random.nextInt(100) + 1; // Random number between 1 and 100
+                    int randomNumber = random.nextInt(100) + 1; 
                     ans = randomSearch(randomNumber, ids, index);
-                    if (ans) 
+                    if (ans==true) 
                     {
                         t.bst_in(randomNumber);
                         index++;
@@ -87,8 +88,8 @@ public class Main {
             } 
             else if (opt == 3) 
             {
-                System.out.println("Displaying all students:");
-                t.displayAll();
+                System.out.println("Displaying available roll numbers:");
+                t.roll();;
 
             } 
             else if (opt == 4) 
