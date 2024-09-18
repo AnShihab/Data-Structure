@@ -17,7 +17,7 @@ public class SRM {
 
         System.out.println("Enter the CGPA =");
         newNode.cgpa = in.nextDouble();
-        in.nextLine();  // Consume leftover newline
+        in.nextLine();  
         
         System.out.println("Enter the department =");
         newNode.dept = in.nextLine();
@@ -82,6 +82,20 @@ public class SRM {
     public void displayAll() 
     {
         inOrderTraversal(start);
+    }
+    public void roll()
+    {
+        inorderroll(start);
+    }
+
+    public void inorderroll(Node node)
+    {
+        if(node!=null)
+        {
+            inorderroll(node.left);
+            System.out.println("Roll No: "+node.roll);
+            inorderroll(node.right);
+        }
     }
 
     public void inOrderTraversal(Node node) 
