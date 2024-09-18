@@ -6,6 +6,4 @@ public class Node
     String dept;
     Node right;
     Node left;
-    
-        
 }
